@@ -1,8 +1,5 @@
 From centos:7
 
-ARG USER
-ARG PASSWORD
-
 # tagging
 LABEL org.label-schema.schema-version="1.0" \
     org.label-schema.name="Docker Base Desktop Image" \
@@ -23,28 +20,21 @@ RUN yum -y install ack wget htop
 RUN yum -y install sudo 
 RUN yum -y install geany
 RUN yum -y install python-pip 
-RUN yum -y install gdm
 RUN yum -y install x11vnc
-RUN yum -y groupinstall "Development Tools"
 RUN yum -y install deltarpm
 RUN yum -y install git 
 RUN yum -y install svn
+RUN yum -y groupinstall "Development Tools"
+RUN yum -y install libreoffice
+RUN yum -y install yum install openssh-server
 RUN pip install Cython
 RUN pip install supervisor 
 
-
-# sandbox user creation
-RUN useradd -r  --groups adm,wheel,root docker_sandbox
-
-
 COPY supervisord.conf /etc/supervisor/supervisord.conf
-
-
 
 # Expose external ports RDP,SSH
 expose 3389
 expose 22
-
 
 
 # HERE LIE OPTIONAL THINGS THAT ARE OPTIONAL
@@ -62,17 +52,8 @@ RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc
 RUN echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo
 
 RUN yum install code -y
-USER $USER
-RUN code --install-extension ms-python.python
-RUN code --install-extension softwaredotcom.swdc-vscode
-RUN code --install-extension ms-vscode.cpptools
-RUN code --install-extension gerane.theme-santojon-dark
-RUN code --install-extension eamodio.gitlens
 
+# clean and reduce footprint
+RUN yum clean all && \
+    rm -rf /var/cache/yum
 
-
-USER root
-
-RUN yum clean all
-
-CMD ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
