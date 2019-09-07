@@ -1,16 +1,36 @@
 # Desktop in a docker
+Desktop virtualization as cattle not pets
 
-## Why?
-- easier to setup thana vm
+## Why, because controll all things.
+- easier to setup than a vm
 - repeatable
-- builds with 2 files
+- ephemeral 
+- understandable
+- builds with just a few files, maybe 100 lines in all
 
 
 ## Images
-This repo contains 2 desktop docker builds
+This repo contains 4 desktop docker builds, with a base size of 2GB plus the size of the desktop
 
-- gnome
-- mate
+- gnome 2.8 GB
+- mate  1.2GB
+- LXQt   112MB
+- xfce   512MB 
+
+Cinnamon: sudo yum install cinnamon-desktop
+LXDE / LXQt: sudo yum install lxqt-session lxqt-panel lxqt-config lxqt-powermanagement lxqt-wallet lxqt-policykit
+Several other window managers are available:
+
+xmonad: sudo yum install xmonad
+fluxbox: sudo yum install fluxbox
+openbox: sudo yum install openbox
+IceWM: sudo yum install icewm
+Matchbox: sudo yum install matchbox-window-manager
+WindowMaker: sudo yum install WindowMaker
+spectrwm: sudo yum install spectrwm
+fvwm: sudo yum install fvwm
+pekwm: sudo yum install pekwm
+vtwm: sudo yum install vtwm
 
 ## additoinal software installed
 
@@ -24,6 +44,9 @@ This repo contains 2 desktop docker builds
 - htop
 - ack
 - wget
+- perl
+- python2
+- i3
 
 
 ## Build Base Desktop Image

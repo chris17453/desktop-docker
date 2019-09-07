@@ -1,0 +1,15 @@
+From desktop-docker-base
+
+# tagging
+LABEL org.label-schema.schema-version="1.0" \
+    org.label-schema.name="Docker Xfce RDP Developer Base Image" \
+    org.label-schema.vendor="None" \
+    org.label-schema.author="Charles Watkins" \
+    org.label-schema.license="GPLv2" \
+    org.label-schema.build-date="20190905"
+
+RUN yum -y groupinstall "Xfce"
+
+ENV SESS_APP=xfce-session
+
+CMD ["/startup.sh"]

@@ -1,0 +1,18 @@
+From desktop-docker-base
+
+# tagging
+LABEL org.label-schema.schema-version="1.0" \
+    org.label-schema.name="Docker LQt RDP Developer Base Image" \
+    org.label-schema.vendor="None" \
+    org.label-schema.author="Charles Watkins" \
+    org.label-schema.license="GPLv2" \
+    org.label-schema.build-date="20190905"
+
+RUN yum -y install lxqt-about lxqt-common lxqt-wallet  lxqt-config lxqt-globalkeys lxqt-notificationd lxqt-openssh-askpass lxqt-panel lxqt-policykit lxqt-powermanagement lxqt-qtplugin lxqt-runner lxqt-session network-manager-applet nm-connection-editor pcmanfm-qt qterminal-qt5
+  
+
+    
+ENV SESS_APP=lxqt-session
+ENV XDG_CURRENT_DESKTOP="X-LXQt"
+
+CMD ["/startup.sh"]

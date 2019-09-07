@@ -1,0 +1,103 @@
+From centos:7
+
+ENV container docker
+ENV DISPLAY :1
+
+# tagging
+LABEL org.label-schema.schema-version="1.0" \
+    org.label-schema.name="Docker Base Desktop Image" \
+    org.label-schema.vendor="None" \
+    org.label-schema.author="Charles Watkins" \
+    org.label-schema.license="GPLv2" \
+    org.label-schema.build-date="20190905"
+
+
+RUN yum update -y
+RUN yum -y install epel-release
+# Workaround due to some CENTOS malarky. will not install properly until someone releases 7.7? Time bases issue.
+# can remove later
+#RUN yum -y install https://archive.fedoraproject.org/pub/archive/epel/7/x86_64/Packages/x/xorgxrdp-0.2.9-1.el7.x86_64.rpm
+
+# required for rdp
+RUN mkdir /builds
+WORKDIR /builds
+# prerequisites for build
+RUN yum -y install git 
+RUN yum -y groupinstall "Development Tools"
+RUN yum -y install  finger cmake patch gcc make autoconf libtool automake pkgconfig openssl-devel gettext file \
+                    pam-devel libX11-devel libXfixes-devel libjpeg-devel libXrandr-devel nasm\
+                    flex bison gcc-c++ libxslt perl-libxml-perl xorg-x11-font-utils xmlto-tex
+RUN yum -y install  pixman fuse turbojpeg libjpeg-turbo openjpeg opus
+RUN yum -y install which
+
+# build xrdp
+RUN git clone --recursive https://github.com/neutrinolabs/xrdp
+RUN     cd xrdp &&\
+        ./bootstrap &&\
+        ./configure &&\
+        make&&\
+        make install
+
+WORKDIR /
+
+# this is manually built because epel has lost its shit
+#RUN yum -y install xrdp
+RUN yum -y install tigervnc-server-minimal
+RUN yum -y install python-pip 
+RUN pip install supervisor 
+
+
+# HERE LIE OPTIONAL THINGS THAT ARE OPTIONAL
+# HERE LIE OPTIONAL THINGS THAT ARE OPTIONAL
+# HERE LIE OPTIONAL THINGS THAT ARE OPTIONAL
+
+
+RUN yum -y install ack wget htop
+RUN yum -y install sudo 
+RUN yum -y install geany
+RUN yum -y install deltarpm
+RUN yum -y install svn
+RUN yum -y install libreoffice
+RUN yum -y install yum install openssh-server
+RUN yum -y install i3 
+RUN yum -y install perl 
+RUN yum -y install unzip
+RUN yum -y install java-openjdk
+RUN yum -y install icedtea-web
+RUN yum -y install net-tools
+RUN yum -y remove  NetworkManager
+RUN pip install Cython
+
+
+# chrome
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+RUN sudo yum -y install ./google-chrome-stable_current_x86_64.rpm
+
+
+# VS CODE Editor
+RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc
+RUN echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo
+RUN yum -y install code 
+
+
+# clean and reduce footprint
+RUN yum -y autoremove
+RUN yum clean all && \
+    rm -rf /var/cache/yum
+
+
+# config file setup
+COPY files/supervisord.conf /etc/supervisor/supervisord.conf
+COPY files/startup.sh /
+COPY files/user_setup.sh /
+COPY files/xrdp.ini /etc/xrdp/
+RUN chmod +x startup.sh
+
+
+# Expose external ports RDP,SSH
+expose 3389
+expose 22
+
+
+# if you run base and not the gnome/mate/lxqt/xfce desktops you just get x11, but the image is a few gigs smaller
+CMD ["/startup.sh"]

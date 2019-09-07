@@ -1,0 +1,19 @@
+From desktop-docker-base
+
+# tagging
+LABEL org.label-schema.schema-version="1.0" \
+    org.label-schema.name="Docker Mate RDP Developer Base Image" \
+    org.label-schema.vendor="None" \
+    org.label-schema.author="Charles Watkins" \
+    org.label-schema.license="GPLv2" \
+    org.label-schema.build-date="20190905"
+
+RUN yum -y groupinstall "Mate Desktop"
+RUN yum -y remove  mate-screensaver
+
+RUN echo "mate-session>~/.xsession">>/etc/xrdp/startwm.sh
+RUN echo "mate-session">/etc/xrdp/startwm.sh
+ENV SESS_APP=mate-session
+
+
+CMD ["/startup.sh"]
