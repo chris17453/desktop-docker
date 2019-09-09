@@ -47,6 +47,7 @@ make base
 make mate
 make run-mate
 ```
+- Test user credentials are user/password
 
 ## TODO
 

@@ -49,15 +49,15 @@ build:
 	docker build ${proxy} -t desktop-docker-xfce  -f Dockerfile-desktop-docker-xfce .
 
 run-gnome:
-	docker run -itd -p 3389:3389 --env USER=nd --env PASSWORD=password desktop-docker-gnome
+	docker run -itd -p 3389:3389 --env USER=user --env PASSWORD=password desktop-docker-gnome
 
 run-mate:
-	docker run -itd -p 3389:3389 --env USER=nd --env PASSWORD=password desktop-docker-mate
+	docker run -itd -p 3389:3389 --env USER=user --env PASSWORD=password desktop-docker-mate
 
 run-lxqt:
-	docker run -itd -p 3389:3389 --env USER=nd --env PASSWORD=password desktop-docker-lxqt
+	docker run -itd -p 3389:3389 --env USER=user --env PASSWORD=password desktop-docker-lxqt
 
 run-xfce:
-	docker run -itd -p 3389:3389 --env USER=nd --env PASSWORD=password desktop-docker-xfce
+	docker run -itd -p 3389:3389 --env USER=user --env PASSWORD=password desktop-docker-xfce
 
 
