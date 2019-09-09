@@ -24,21 +24,25 @@ This repo contains 4 desktop docker builds, with a base size of 2GB plus the siz
 
 - Group -> Development Tools
 - Group -> LibreOffice
-- visual studio code
-- chrome
+- Languages -> openjava-jdk
+- Languages -> perl
+- Languages -> python2
+- IDE -> visual studio code
+- Browser-> chrome
+- Browser-> firefox
+- iced-tea (java applet viewer for the web)
 - geany
 - git
 - svn
 - htop
 - ack
 - wget
-- perl
-- python2
 - i3
 
 ## To connect
 
 RDP to localhost and connect with the user credentials listed in the build command
+- Ex: user:password@127.0.0.1 
 
 ### Test build
 
