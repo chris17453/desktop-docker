@@ -92,7 +92,7 @@ docker build -t gnome-docker --build-arg USER=dev --build-arg PASSWORD=dev -f gn
 
 
 ### RDP Demo
-![Demo](https://raw.githubusercontent.com/chris17453/desktop-docker/master/demo/demo.gif)
+![Demo](https://raw.githubusercontent.com/chris17453/desktop-docker/master/demo/rdp.gif)
 
 
 
