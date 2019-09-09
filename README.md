@@ -36,40 +36,6 @@ This repo contains 4 desktop docker builds, with a base size of 2GB plus the siz
 - python2
 - i3
 
-
-## Build Base Desktop Image
-
-```bash
-
-docker build -t desktop-docker -f base-Dockerfile  .
-```
-
-## Build Mate
-
-```bash
-
-docker build -t mate-docker --build-arg USER=default_user --build-arg PASSWORD=xxx -f mate-Dockerfile  .
-```
-
-## Run Mate
-
-```bash
-docker run -d -p 3389:3389 mate-docker
-```
-
-## Build Gnome
-
-```bash
-
-docker build -t gnome-docker --build-arg USER=default_user --build-arg PASSWORD=xxx -f gnome-Dockerfile  .
-```
-
-## Run Gnome
-
-```bash
-docker run -d -p 3389:3389 gnome-docker
-```
-
 ## To connect
 
 RDP to localhost and connect with the user credentials listed in the build command
@@ -77,10 +43,9 @@ RDP to localhost and connect with the user credentials listed in the build comma
 ### Test build
 
 ```bash
-
-docker build -t desktop-docker -f base-Dockerfile  .
-docker build -t mate-docker --build-arg USER=dev --build-arg PASSWORD=dev -f mate-Dockerfile  .
-docker build -t gnome-docker --build-arg USER=dev --build-arg PASSWORD=dev -f gnome-Dockerfile  .
+make base
+make mate
+make run-mate
 ```
 
 ## TODO
