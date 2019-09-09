@@ -8,6 +8,8 @@ Desktop virtualization as cattle not pets
 - understandable
 - builds with just a few files, maybe 100 lines in all
 
+## NOTE..
+- only mate works at this moment, the other images are a WIP
 
 ## Images
 This repo contains 4 desktop docker builds, with a base size of 2GB plus the size of the desktop
@@ -17,20 +19,6 @@ This repo contains 4 desktop docker builds, with a base size of 2GB plus the siz
 - LXQt   112MB
 - xfce   512MB 
 
-Cinnamon: sudo yum install cinnamon-desktop
-LXDE / LXQt: sudo yum install lxqt-session lxqt-panel lxqt-config lxqt-powermanagement lxqt-wallet lxqt-policykit
-Several other window managers are available:
-
-xmonad: sudo yum install xmonad
-fluxbox: sudo yum install fluxbox
-openbox: sudo yum install openbox
-IceWM: sudo yum install icewm
-Matchbox: sudo yum install matchbox-window-manager
-WindowMaker: sudo yum install WindowMaker
-spectrwm: sudo yum install spectrwm
-fvwm: sudo yum install fvwm
-pekwm: sudo yum install pekwm
-vtwm: sudo yum install vtwm
 
 ## additoinal software installed
 
@@ -101,3 +89,25 @@ docker build -t gnome-docker --build-arg USER=dev --build-arg PASSWORD=dev -f gn
 - Add user mountable directories/volumes
 - setup scap profile / scan
 - move user creation and customization into startup  script
+
+
+### RDP Demo
+![Demo](https://raw.githubusercontent.com/chris17453/desktop-docker/master/demo/demo.gif)
+
+
+
+## possible desktops... info..
+Cinnamon: sudo yum install cinnamon-desktop
+LXDE / LXQt: sudo yum install lxqt-session lxqt-panel lxqt-config lxqt-powermanagement lxqt-wallet lxqt-policykit
+Several other window managers are available:
+
+xmonad: sudo yum install xmonad
+fluxbox: sudo yum install fluxbox
+openbox: sudo yum install openbox
+IceWM: sudo yum install icewm
+Matchbox: sudo yum install matchbox-window-manager
+WindowMaker: sudo yum install WindowMaker
+spectrwm: sudo yum install spectrwm
+fvwm: sudo yum install fvwm
+pekwm: sudo yum install pekwm
+vtwm: sudo yum install vtwm

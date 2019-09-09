@@ -3,6 +3,7 @@ From centos:7
 ENV container docker
 ENV DISPLAY :1
 
+
 # tagging
 LABEL org.label-schema.schema-version="1.0" \
     org.label-schema.name="Docker Base Desktop Image" \
@@ -68,6 +69,10 @@ RUN yum -y install net-tools
 RUN yum -y remove  NetworkManager
 RUN pip install Cython
 
+# all the stuff chrome needs, if chrome has to install it the proxy fails.. if installed
+RUN yum -y install at bc cronie cronie-anacron crontabs cups-client desktop-file-utils ed libXScrnSaver \
+            libappindicator-gtk3 libdbusmenu libdbusmenu-gtk3 liberation-fonts liberation-narrow-fonts \
+            libindicator-gtk3 libpipeline mailx man-db redhat-lsb-core redhat-lsb-submod- spax ssmtp time xdg-utils 
 
 # chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm

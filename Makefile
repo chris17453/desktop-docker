@@ -3,7 +3,14 @@
 
 .PHONY: all test clean profile
 
-help:
+ifneq ($(http_proxy),)
+proxy=--build-arg http_proxy=$(http_proxy) --build-arg https_proxy=$(https_proxy)
+else
+proxy=
+endif
+
+
+help: 
 	@echo "clean           | delete the docker images for this project"
 	@echo "build           | create the docker images for this project"
 	@echo "base            | create the docker base image for this project"
@@ -19,27 +26,27 @@ clean:
 	
 
 base:
-	docker build -t desktop-docker-base  -f Dockerfile-desktop-docker-base .
+	docker build ${proxy} -t desktop-docker-base -f Dockerfile-desktop-docker-base .
 
 
 gnome:
-	docker build -t desktop-docker-gnome -f Dockerfile-desktop-docker-gnome .
+	docker build ${proxy} -t desktop-docker-gnome -f Dockerfile-desktop-docker-gnome .
 
 mate:
-	docker build -t desktop-docker-mate  -f Dockerfile-desktop-docker-mate .
+	docker build ${proxy} -t desktop-docker-mate  -f Dockerfile-desktop-docker-mate .
 
 lxqt:
-	docker build -t desktop-docker-lxqt  -f Dockerfile-desktop-docker-lxqt .
+	docker build ${proxy} -t desktop-docker-lxqt  -f Dockerfile-desktop-docker-lxqt .
 
 xfce:
-	docker build -t desktop-docker-xfce  -f Dockerfile-desktop-docker-xfce .
+	docker build ${proxy} -t desktop-docker-xfce  -f Dockerfile-desktop-docker-xfce .
 
 build:
-	docker build -t desktop-docker-base  -f Dockerfile-desktop-docker-base .
-	docker build -t desktop-docker-gnome -f Dockerfile-desktop-docker-gnome .
-	docker build -t desktop-docker-mate  -f Dockerfile-desktop-docker-mate .
-	docker build -t desktop-docker-lxqt  -f Dockerfile-desktop-docker-lxqt .
-	docker build -t desktop-docker-xfce  -f Dockerfile-desktop-docker-xfce .
+	docker build ${proxy} -t desktop-docker-base  -f Dockerfile-desktop-docker-base .
+	docker build ${proxy} -t desktop-docker-gnome -f Dockerfile-desktop-docker-gnome .
+	docker build ${proxy} -t desktop-docker-mate  -f Dockerfile-desktop-docker-mate .
+	docker build ${proxy} -t desktop-docker-lxqt  -f Dockerfile-desktop-docker-lxqt .
+	docker build ${proxy} -t desktop-docker-xfce  -f Dockerfile-desktop-docker-xfce .
 
 run-gnome:
 	docker run -itd -p 3389:3389 --env USER=nd --env PASSWORD=password desktop-docker-gnome
