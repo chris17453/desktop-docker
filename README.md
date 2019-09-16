@@ -11,13 +11,6 @@ Desktop virtualization as cattle not pets
 ## NOTE..
 - only mate works at this moment, the other images are a WIP
 
-## Images
-This repo contains 4 desktop docker builds, with a base size of 2GB plus the size of the desktop
-
-- gnome 2.8 GB
-- mate  1.2GB
-- LXQt   112MB
-- xfce   512MB 
 
 
 ## additoinal software installed
@@ -67,17 +60,16 @@ make run-mate
 
 
 ## possible desktops... info..
-Cinnamon: sudo yum install cinnamon-desktop
-LXDE / LXQt: sudo yum install lxqt-session lxqt-panel lxqt-config lxqt-powermanagement lxqt-wallet lxqt-policykit
-Several other window managers are available:
-
-xmonad: sudo yum install xmonad
-fluxbox: sudo yum install fluxbox
-openbox: sudo yum install openbox
-IceWM: sudo yum install icewm
-Matchbox: sudo yum install matchbox-window-manager
-WindowMaker: sudo yum install WindowMaker
-spectrwm: sudo yum install spectrwm
-fvwm: sudo yum install fvwm
-pekwm: sudo yum install pekwm
-vtwm: sudo yum install vtwm
+- Cinnamon: sudo yum install cinnamon-desktop
+- LXDE / LXQt: sudo yum install lxqt-session lxqt-panel lxqt-config lxqt-powermanagement lxqt-wallet lxqt-policykit
+- Several other window managers are available:
+- xmonad: sudo yum install xmonad
+- fluxbox: sudo yum install fluxbox
+- openbox: sudo yum install openbox
+- IceWM: sudo yum install icewm
+- Matchbox: sudo yum install matchbox-window-manager
+- WindowMaker: sudo yum install WindowMaker
+- spectrwm: sudo yum install spectrwm
+- fvwm: sudo yum install fvwm
+- pekwm: sudo yum install pekwm
+- vtwm: sudo yum install vtwm
